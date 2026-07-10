@@ -1,12 +1,40 @@
-import { startCamera } from "./camera.js";
+import { 
+startCamera,
+stopCamera
+} from "./camera.js";
+
+
+import {
+drawOverlay
+} from "./overlay.js";
+
 
 
 document
 .getElementById("startCamera")
 .addEventListener(
 "click",
-startCamera
+()=>{
+
+startCamera();
+
+drawOverlay();
+
+}
+
 );
 
 
-console.log("CricketMarker loaded");
+
+document
+.getElementById("stopCamera")
+.addEventListener(
+"click",
+stopCamera
+);
+
+
+
+console.log(
+"CricketMarker v0.2 loaded"
+);
