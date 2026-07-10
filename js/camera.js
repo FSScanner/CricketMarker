@@ -39,6 +39,13 @@ audio:false
 video.srcObject = stream;
 
 
+await new Promise(resolve => {
+
+video.onloadedmetadata = resolve;
+
+});
+
+
 document.getElementById(
 "camera-message"
 ).style.display="none";

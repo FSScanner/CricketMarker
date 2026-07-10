@@ -10,15 +10,25 @@ drawOverlay
 
 
 
-document
-.getElementById("startCamera")
-.addEventListener(
-"click",
-()=>{
+const startButton =
+document.getElementById("startCamera");
 
-startCamera();
+
+const stopButton =
+document.getElementById("stopCamera");
+
+
+
+startButton.addEventListener(
+"click",
+async ()=>{
+
+
+await startCamera();
+
 
 drawOverlay();
+
 
 }
 
@@ -26,9 +36,7 @@ drawOverlay();
 
 
 
-document
-.getElementById("stopCamera")
-.addEventListener(
+stopButton.addEventListener(
 "click",
 stopCamera
 );

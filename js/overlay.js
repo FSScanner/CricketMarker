@@ -5,16 +5,23 @@ const canvas =
 document.getElementById("overlay");
 
 
-const ctx =
-canvas.getContext("2d");
+const camera =
+document.getElementById("camera");
 
+
+// Wait for camera dimensions
 
 canvas.width =
-canvas.clientWidth;
+camera.videoWidth;
 
 
 canvas.height =
-canvas.clientHeight;
+camera.videoHeight;
+
+
+
+const ctx =
+canvas.getContext("2d");
 
 
 
@@ -27,23 +34,23 @@ canvas.height
 
 
 
-ctx.strokeStyle="red";
+ctx.strokeStyle = "red";
 
-ctx.lineWidth=4;
+ctx.lineWidth = 5;
 
 
 
-// centre line
+// Centre vertical line
 
 ctx.beginPath();
 
 ctx.moveTo(
-canvas.width/2,
+canvas.width / 2,
 0
 );
 
 ctx.lineTo(
-canvas.width/2,
+canvas.width / 2,
 canvas.height
 );
 
@@ -51,24 +58,34 @@ ctx.stroke();
 
 
 
+// Centre circle
+
 ctx.beginPath();
 
 ctx.arc(
 
-canvas.width/2,
+canvas.width / 2,
 
-canvas.height/2,
+canvas.height / 2,
 
-25,
+40,
 
 0,
 
-Math.PI*2
+Math.PI * 2
 
 );
 
 
 ctx.stroke();
+
+
+
+console.log(
+"Overlay drawn",
+canvas.width,
+canvas.height
+);
 
 
 }
