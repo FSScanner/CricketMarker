@@ -43,6 +43,16 @@ stopCamera
 
 
 
+import {
+startSensors
+} from "./sensors.js";
+
+
+
+startSensors();
+
+
+
 console.log(
-"CricketMarker v0.2 loaded"
+"CricketMarker v0.3 loaded"
 );
