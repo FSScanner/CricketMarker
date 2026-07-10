@@ -76,7 +76,7 @@ Phone sensors active
 Heading: ${orientation.alpha.toFixed(1)}°
 `;
 
-
+}
 
 catch(error){
 
