@@ -14,6 +14,11 @@ import {
 } from "./sensors.js";
 
 
+import {
+  calibratePitch
+} from "./calibration.js";
+
+
 
 // Camera buttons
 
@@ -32,8 +37,16 @@ const sensorButton =
 document.getElementById("enableSensors");
 
 
+// Calibration button
+
+const pitchButton =
+document.getElementById("setPitch");
+
+
 
 // Start camera
+
+if(startButton){
 
 startButton.addEventListener(
 "click",
@@ -50,14 +63,20 @@ async ()=>{
 
 );
 
+}
+
 
 
 // Stop camera
+
+if(stopButton){
 
 stopButton.addEventListener(
 "click",
 stopCamera
 );
+
+}
 
 
 
@@ -74,6 +93,19 @@ startSensors
 
 
 
+// Set pitch direction
+
+if(pitchButton){
+
+pitchButton.addEventListener(
+"click",
+calibratePitch
+);
+
+}
+
+
+
 console.log(
-"CricketMarker v0.3.1 loaded"
+"CricketMarker v0.4.0 loaded"
 );

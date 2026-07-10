@@ -47,6 +47,9 @@ window.addEventListener(
 orientation.alpha =
 event.alpha ?? 0;
 
+window.currentHeading =
+orientation.alpha;
+
 
 orientation.beta =
 event.beta ?? 0;
@@ -67,10 +70,13 @@ updateDisplay();
 
 
 document.getElementById("status").innerHTML =
-"Phone sensors active";
+`
+Phone sensors active
+<br>
+Heading: ${orientation.alpha.toFixed(1)}°
+`;
 
 
-}
 
 catch(error){
 

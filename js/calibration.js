@@ -1,11 +1,22 @@
-let referenceHeading = null;
+import {
+saveSetting,
+loadSetting
+} from "./storage.js";
 
 
-export function calibrate(){
+
+export function calibratePitch(){
 
 
-referenceHeading =
-window.currentHeading;
+const heading =
+window.currentHeading || 0;
+
+
+
+saveSetting(
+"pitchHeading",
+heading
+);
 
 
 
@@ -13,15 +24,22 @@ document.getElementById(
 "status"
 ).innerHTML =
 
-"Pitch Line Locked";
+`
+Pitch Direction Locked
+<br>
+${heading.toFixed(1)}°
+`;
+
 
 
 }
 
 
 
-export function getCalibration(){
+export function getPitchHeading(){
 
-return referenceHeading;
+return loadSetting(
+"pitchHeading"
+);
 
 }
