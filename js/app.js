@@ -18,6 +18,10 @@ import {
   calibratePitch
 } from "./calibration.js";
 
+import {
+startMarkerTracking
+} from "./marker.js";
+
 
 
 // Camera buttons
@@ -41,6 +45,19 @@ document.getElementById("enableSensors");
 
 const pitchButton =
 document.getElementById("setPitch");
+
+const markerButton =
+document.getElementById("startMarker");
+
+
+if(markerButton){
+
+markerButton.addEventListener(
+"click",
+startMarkerTracking
+);
+
+}
 
 
 
