@@ -1,96 +1,82 @@
 let orientation = {
-
-alpha:0,
-beta:0,
-gamma:0
-
+  alpha: 0,
+  beta: 0,
+  gamma: 0
 };
-
 
 
 export async function startSensors(){
 
-
-try {
-
-
-if(
-typeof DeviceOrientationEvent !== "undefined" &&
-typeof DeviceOrientationEvent.requestPermission === "function"
-){
+  try {
 
 
-const permission =
-await DeviceOrientationEvent.requestPermission();
+    if(
+      typeof DeviceOrientationEvent !== "undefined" &&
+      typeof DeviceOrientationEvent.requestPermission === "function"
+    ){
+
+      const permission =
+      await DeviceOrientationEvent.requestPermission();
 
 
-if(permission !== "granted"){
+      if(permission !== "granted"){
 
-throw new Error(
-"Sensor permission denied"
-);
+        throw new Error(
+          "Sensor permission denied"
+        );
 
-}
+      }
 
-
-}
+    }
 
 
 
-window.addEventListener(
-
-"deviceorientation",
-
-(event)=>{
+    window.addEventListener(
+      "deviceorientation",
+      (event)=>{
 
 
-orientation.alpha =
-event.alpha ?? 0;
-
-window.currentHeading =
-orientation.alpha;
+        orientation.alpha =
+        event.alpha ?? 0;
 
 
-orientation.beta =
-event.beta ?? 0;
+        orientation.beta =
+        event.beta ?? 0;
 
 
-orientation.gamma =
-event.gamma ?? 0;
+        orientation.gamma =
+        event.gamma ?? 0;
 
 
+        window.currentHeading =
+        orientation.alpha;
 
-updateDisplay();
+
+        updateDisplay();
 
 
-}
-
-);
+      }
+    );
 
 
 
-document.getElementById("status").innerHTML =
-`
-Phone sensors active
-<br>
-Heading: ${orientation.alpha.toFixed(1)}°
-`;
-
-}
-
-catch(error){
+    updateDisplay();
 
 
-console.error(error);
+  }
 
 
-document.getElementById("status").innerHTML =
-"Sensor Error: "
-+
-error.message;
+  catch(error){
 
 
-}
+    console.error(error);
+
+
+    document.getElementById("status").innerHTML =
+    "Sensor Error: " + error.message;
+
+
+  }
 
 
 }
@@ -100,28 +86,26 @@ error.message;
 function updateDisplay(){
 
 
-const status =
-document.getElementById("status");
+  const status =
+  document.getElementById("status");
 
 
+  status.innerHTML = `
 
-status.innerHTML = `
+  Heading:
+  ${orientation.alpha.toFixed(1)}°
 
-Heading:
-${orientation.alpha.toFixed(1)}°
+  <br>
 
-<br>
+  Tilt:
+  ${orientation.beta.toFixed(1)}°
 
-Tilt:
-${orientation.beta.toFixed(1)}°
+  <br>
 
-<br>
+  Roll:
+  ${orientation.gamma.toFixed(1)}°
 
-Roll:
-${orientation.gamma.toFixed(1)}°
-
-`;
-
+  `;
 
 
 }
