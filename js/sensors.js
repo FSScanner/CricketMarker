@@ -1,3 +1,5 @@
+window.lockedMessage = false;
+
 let orientation = {
   alpha: 0,
   beta: 0,
@@ -62,9 +64,7 @@ export async function startSensors(){
 
     updateDisplay();
 
-
   }
-
 
   catch(error){
 
@@ -84,6 +84,12 @@ export async function startSensors(){
 
 
 function updateDisplay(){
+
+if(window.lockedMessage){
+
+return;
+
+}
 
 
   const status =

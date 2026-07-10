@@ -18,7 +18,7 @@ saveSetting(
 heading
 );
 
-
+window.lockedMessage = true;
 
 document.getElementById(
 "status"
