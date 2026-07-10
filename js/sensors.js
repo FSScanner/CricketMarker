@@ -7,24 +7,53 @@ gamma:0
 };
 
 
-export function startSensors(){
+
+export async function startSensors(){
+
+
+try {
+
+
+if(
+typeof DeviceOrientationEvent !== "undefined" &&
+typeof DeviceOrientationEvent.requestPermission === "function"
+){
+
+
+const permission =
+await DeviceOrientationEvent.requestPermission();
+
+
+if(permission !== "granted"){
+
+throw new Error(
+"Sensor permission denied"
+);
+
+}
+
+
+}
+
 
 
 window.addEventListener(
+
 "deviceorientation",
+
 (event)=>{
 
 
 orientation.alpha =
-event.alpha || 0;
+event.alpha ?? 0;
 
 
 orientation.beta =
-event.beta || 0;
+event.beta ?? 0;
 
 
 orientation.gamma =
-event.gamma || 0;
+event.gamma ?? 0;
 
 
 
@@ -36,6 +65,28 @@ updateDisplay();
 );
 
 
+
+document.getElementById("status").innerHTML =
+"Phone sensors active";
+
+
+}
+
+catch(error){
+
+
+console.error(error);
+
+
+document.getElementById("status").innerHTML =
+"Sensor Error: "
++
+error.message;
+
+
+}
+
+
 }
 
 
@@ -45,6 +96,7 @@ function updateDisplay(){
 
 const status =
 document.getElementById("status");
+
 
 
 status.innerHTML = `

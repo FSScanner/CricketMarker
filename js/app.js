@@ -1,14 +1,21 @@
 import { 
-startCamera,
-stopCamera
+  startCamera,
+  stopCamera
 } from "./camera.js";
 
 
 import {
-drawOverlay
+  drawOverlay
 } from "./overlay.js";
 
 
+import {
+  startSensors
+} from "./sensors.js";
+
+
+
+// Camera buttons
 
 const startButton =
 document.getElementById("startCamera");
@@ -19,15 +26,24 @@ document.getElementById("stopCamera");
 
 
 
+// Sensor button
+
+const sensorButton =
+document.getElementById("enableSensors");
+
+
+
+// Start camera
+
 startButton.addEventListener(
 "click",
 async ()=>{
 
 
-await startCamera();
+  await startCamera();
 
 
-drawOverlay();
+  drawOverlay();
 
 
 }
@@ -36,6 +52,8 @@ drawOverlay();
 
 
 
+// Stop camera
+
 stopButton.addEventListener(
 "click",
 stopCamera
@@ -43,16 +61,19 @@ stopCamera
 
 
 
-import {
+// Enable phone sensors
+
+if(sensorButton){
+
+sensorButton.addEventListener(
+"click",
 startSensors
-} from "./sensors.js";
+);
 
-
-
-startSensors();
+}
 
 
 
 console.log(
-"CricketMarker v0.3 loaded"
+"CricketMarker v0.3.1 loaded"
 );
